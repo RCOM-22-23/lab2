@@ -1,4 +1,4 @@
-#Ligacoes fisicas
+# Ligacoes fisicas
 
 ```
 TUX42S0 -> Switch Porta Consola
@@ -8,29 +8,29 @@ TUX43E0  -> Switch Porta 2
 TUX42E0  -> Switch Porta 3
 TUX44E1  -> Switch Porta 4
 ```
-#Configurar ip's nos terminais localmente
+# Configurar ip's nos terminais localmente
 
-##terminal 4 (172.16.40.254 -> 00:21:5a:5a:7b:ea)
+## terminal 4 (172.16.40.254 -> 00:21:5a:5a:7b:ea)
 ```
 > ifconfig eth0 up
 > ifconfig eth0 172.16.40.254/24
 > ifconfig eth1 172.16.41.253/24
 ```
-##terminal 3 (172.16.40.1 -> 00:21:5a:61:2f:d4)
+## terminal 3 (172.16.40.1 -> 00:21:5a:61:2f:d4)
 ```
 > ifconfig eth0 up
 > ifconfig eth0 172.16.40.1/24
 > route add -net 172.16.41.0/24 gw 172.16.40.254
 ```
 
-##terminal 2 (172.16.41.1/24)
+## terminal 2 (172.16.41.1/24)
 ```
 > ifconfig eth0 up
 > ifconfig eth0 172.16.41.1/24
 > route add -net 172.16.40.0/24 gw 172.16.41.253
 ```
 
-#Switch
+# Switch
 
 ## Adicionar bridges
 
@@ -38,7 +38,7 @@ TUX44E1  -> Switch Porta 4
 > interface bridge add name = bridge40
 > interface bridge add name = bridge41
 ```
-## Remover ports de eth 1,2,3
+## Remover ports de ether da bridge default
 
 ```
 > interface bridge port remove [find interface = ether1]
