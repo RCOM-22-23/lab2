@@ -100,7 +100,7 @@ routes -n
 # Bridge 40
 > interface bridge port add bridge=bridge40 interface=ether1 (terminal 3)
 > interface bridge port add bridge=bridge40 interface=ether2 (terminal 4)
-#Bridge 41
+# Bridge 41
 > interface bridge port add bridge=bridge41 interface=ether3 (terminal 2)
 > interface bridge port add bridge=bridge41 interface=ether4 (terminal 4)
 > interface bridge port add bridge=bridge41 interface=ether5 (router)
@@ -114,9 +114,13 @@ routes -n
 > ip address add address=172.16.1.49/24 interface=ether1
 # configuração IP local
 > ip address add address=172.16.41.254/24 interface=ether2
+# imprimir ip's
+> ip address print
 
 # Definir default gateway
 > ip route add dst-address=0.0.0.0/0 gateway=172.16.1.254
 # Definir route local
 > ip route add dst-address=172.16.40.0/24 gateway=172.16.41.253
+#
+> ip route print
 ```
