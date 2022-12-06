@@ -22,10 +22,13 @@ routerE2 -> Switch Porta 5
 ## terminal 4 (172.16.40.254 -> 00:21:5a:5a:7b:ea)
 ```
 # configuração de IP's
-> ifconfig eth0 up
-> ifconfig eth0 172.16.40.254/24
-> ifconfig eth1 up
-> ifconfig eth1 172.16.41.253/24
+ifconfig eth0 up
+ifconfig eth0 172.16.40.254/24
+ifconfig eth0 
+
+ifconfig eth1 up
+ifconfig eth1 172.16.41.253/24
+ifconfig eth1 
 
 # Enable IP forwarding
 echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -43,25 +46,32 @@ routes -n
 ## terminal 3 (172.16.40.1 -> 00:21:5a:61:2f:d4)
 ```
 # configuração do IP
-> ifconfig eth0 up
-> ifconfig eth0 172.16.40.1/24
+ifconfig eth0 up
+ifconfig eth0 172.16.40.1/24
+ifconfig eth0 
 
 # route para aceder a vlan 1 a partir de eth0 de tux44
-> route add -net 172.16.41.0/24 gw 172.16.40.254
+route add -net 172.16.41.0/24 gw 172.16.40.254
 # definir tux44 como default router
-> route add default gw 172.16.40.254
+route add default gw 172.16.40.254
+# ver routes
+routes -n
 ```
 
 ## terminal 2 (172.16.41.1/24)
 ```
 # configuração do IP
-> ifconfig eth0 up
-> ifconfig eth0 172.16.41.1/24
+ifconfig eth0 up
+ifconfig eth0 172.16.41.1/24
+ifconfig eth0 
 
-# route para aceder a vlan 1 a partir de eth0 de tux24
-> route add -net 172.16.40.0/24 gw 172.16.41.253
-# definir tux44 como default router
-route add default gw 172.16.40.254
+# route para aceder a vlan 0 a partir de eth1 de tux44
+route add -net 172.16.40.0/24 gw 172.16.41.253
+# route para aceder a internet a partir de eth0 de router
+route add -net 172.16.1.0/24 gw 172.16.41.254
+# definir RC como default router
+route add default gw 172.16.41.254
+
 # ver routes
 routes -n
 ```
